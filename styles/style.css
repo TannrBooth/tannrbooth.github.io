@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Fascinate+Inline&display=swap');
+
+body {
+    background-color: #03071e;
+    margin: 30px;
+}
+
+h1 {
+    border: #6a040f, solid, 6px;
+    text-align: center;
+    line-height: 100px;
+    vertical-align: center;
+}
+
+button, a, li {
+    margin-left: 50px;
+}
+
+#intro {
+    display:block;
+    margin:auto;
+    width: 600px;
+}
+
+h1, h2, h3 {
+    color: #f48c06;
+    font-family: 'Boldonse';
+    margin-left: 50px;
+    
+}
+
+p {
+    margin-left: 50px;
+    width: 600px;
+}
+
+p, li, span {
+    color: #ffba08;
+    font-family: 'Winky Sans';
+}
+
+a:link {
+    color: #d00000;
+}
+
+a:visited {
+    color: #d00000;
+}
+
+hr {
+    border-color: #9d0208;
+}
+
+img {
+    display: block;
+    margin: auto;
+    padding: 15px;
+}
