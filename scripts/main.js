@@ -1,7 +1,15 @@
-function question1() {
-    document.getElementById('answer1').textContent = " Red"
+function lightMode(){
+    document.getElementById("page").style = "background-color: lightyellow; color: #03071e;"
+    document.getElementById("main_title").style = "border: #03071e, solid, 6px;"
 }
 
-function question2() {
-    document.getElementById('answer2').textContent = " Five"
+function darkMode(){
+    document.getElementById("page").style = "background-color: #03071e; color: white;"
+    document.getElementById("main_title").style = "border: #6a040f, solid, 6px;"
+}
+
+function defaultMode(){
+    document.getElementById("page").attributeStyleMap.clear();
+    document.getElementById("main_title").attributeStyleMap.clear();
+
 }

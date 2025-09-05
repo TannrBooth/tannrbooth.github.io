@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Fascinate+Inline&display=swap');
 
 body {
-    background-color: #03071e;
+    background-color: #6a040f;
     margin: 30px;
 }
 
 h1 {
-    border: #6a040f, solid, 6px;
+    border: #03071e, solid, 6px; 
     text-align: center;
     line-height: 100px;
     vertical-align: center;
