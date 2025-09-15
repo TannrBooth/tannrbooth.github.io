@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sphere Calculator</title>
+    <script src="../scripts/shape.js"></script>
+</head>
+<body>
+    <a href="../index.html">Home</a>
+    <h1>Sphere Calculator</h1>
+    <img width="500px" src="../photos/sphere_measurements.jpg" alt="">
+    <h2>Calculations:</h2>
+    <p>
+        <label for="radius">Enter radius (r): </label>
+        <input id="radius" type="text">
+        <button onclick="calculateCircle()">Calculate</button>
+    </p>
+    <h3>Perimeter (Circumference) of a circle</h3>
+    <p>
+        <p>c = 2&pi;r </p>
+        <p>c = <span id="circumference"></span></p>
+    </p>
+    <h3>Area of a circle</h3>
+    <p>
+        <p>&pi;r<sup>2</sup></p>
+        <p>a = <span id="area"></span></p>
+    </p>
+    <h3>Volume of a sphere</h3>
+    <p>
+        <p>v = <sup>4</sup>&frasl;<sub>3</sub>&pi;r<sup>3</sup></p>
+        <p>v = <span id="volume"></span></p>
+    </p>
+    
+</body>
+</html>
