@@ -21,7 +21,7 @@ function refreshPage() {
 function addValue() {
     value = parseFloat(document.getElementById("entry").value);
     if (!value) {
-        alert("Must enter an integer");
+        alert("Must enter a number");
     }
     else {
         numArr.push(value);
@@ -33,7 +33,7 @@ function addValue() {
 function removeValue(){
     value = parseFloat(document.getElementById("entry").value);
     if (!value) {
-        alert("Must enter an integer")
+        alert("Must enter a number")
     }
     else {
         valueIndex = numArr.indexOf(value);
