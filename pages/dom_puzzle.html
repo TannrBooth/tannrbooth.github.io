@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DOM Puzzle</title>
+        <style>
+            /* NOTE: Do NOT modify this stylesheet */
+            #puzzle {
+                width: 500px;
+                height: 500px;
+                border: 5px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- NOTE: Do NOT modify the body or div -->
+        <div id="puzzle"></div>
+
+        <script>
+            // All puzzle code must be implemented here
+            let home = document.createElement("a");
+            let body = document.querySelector("body");
+            let puzzle = document.getElementById("puzzle");
+            let title = document.createElement("h1");
+            let message = document.createElement("p");
+            let letters = ['A', 'B', 'C', 'D'];
+            let buttonColors = ["#9455F4", "#4A2B74", "#594492", "#854DDC"];
+
+            puzzle.style.display = "flex";
+            puzzle.style.flexWrap = "wrap";
+            puzzle.addEventListener("mouseover", () => {
+                puzzle.style.border = "5px solid orange";
+            });
+
+            puzzle.addEventListener("mouseout", () => {
+                puzzle.style.border = "5px solid black";
+            });
+            home.textContent = "Home";
+            home.setAttribute("href", "../index.html")
+
+            for (let i = 0; i < 4; i++) {
+                let corner = document.createElement("div");
+                corner.style.width = "250px";
+                corner.style.height = "250px";
+                corner.style.backgroundColor = "#7338A0";
+                corner.setAttribute("id", "corner" + (i));
+                puzzle.appendChild(corner);
+            }
+
+            for (let i = 0; i < 4; i++) {
+                let button = document.createElement("button");
+                button.textContent = letters[i];
+                button.style.width = "125px";
+                button.style.height = "125px";
+                button.style.color = "white";
+                button.style.backgroundColor = buttonColors[i];
+                corner0.appendChild(button);
+            }
+
+            for (let i = 0; i < 100; i++) {
+                let button = document.createElement("button");
+                button.style.width = "25px";
+                button.style.height = "24px";
+                button.style.backgroundColor = "#C39CFE";
+                button.addEventListener("click", (event) => {
+                    console.log(event.target);
+                    event.target.style.backgroundColor = "#4A2574";
+                    if (event.target.nextSibling)
+                        event.target.nextSibling.style.backgroundColor = "orange";
+                    if (event.target.previousSibling)
+                        event.target.previousSibling.style.backgroundColor = "orange";
+                })
+                corner3.appendChild(button);
+            }
+
+            title.textContent = "DOM Puzzle";
+            body.prepend(title);
+            body.prepend(home);
+
+            message.textContent = "This is a puzzle created entirely with JavaScript.";
+            body.appendChild(message);
+
+
+        </script>
+    </body>
+</html>
