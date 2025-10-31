@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+</head>
+<body>
+    <a href="../index.html">Home</a>
+    <h3>Comment Here</h3>
+    <form id="commentForm" onsubmit="displayComment(event)">
+        <label for="name">Name: </label>
+        <input id="name" 
+                type="text"
+                required
+                pattern="[A-Za-z ]+"
+        ><br><br>
+        <label for="phone">Phone Number: </label>
+        <input id="phone"
+                type="tel"
+                pattern="^\+?\d{10,15}$"
+        ><br><br>
+        <label for="email">Email: </label>
+        <input id="email"
+                type="email"
+        ><br><br>
+        <h3>Create Account</h3>
+        <label for="username">Username: </label>
+        <input id="username" 
+               type="text"
+               name="username"
+               pattern="[a-zA-Z0-9_]+"
+               title="Only letters, numbers, and underscore are allowed"
+        >
+        <p id="usernameMessage"></p>
+        <label for="password">Password: </label>
+        <input id="password"
+               type="password"
+               name="password"
+               minlength="8"
+
+               
+        ><br>
+        <p id="passwordMessage"></p>
+        <textarea name="userInput" id="userInput"></textarea>
+        <br><br>
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <div id="comments"></div>
+
+    
+
+    <script>
+        let username = document.getElementById("username").addEventListener("input", function() {
+            const username = this.value;
+
+            let hasSpecial = /[!@#$%^&*()+<>?,./;'':"`~]/.test(username);
+            if (hasSpecial) {
+                document.getElementById("usernameMessage").textContent = "Only letters, numbers, and underscores are allowed";
+            }
+            else {
+                document.getElementById("usernameMessage").textContent = "";
+            }
+        });
+
+        let password = document.getElementById("password").addEventListener("input", function() {
+            let password = this.value;
+
+            let message = document.getElementById("passwordMessage");
+            const missing = [];
+            if (password.length < 8)
+                missing.push("8-character minimum");
+
+            let hasLower = /[a-z]/.test(password);
+            if (!hasLower)
+                missing.push("lower-case letter");
+            
+            let hasUpper = /[A-Z]/.test(password);
+            if (!hasUpper)
+                missing.push("upper-case letter");
+            
+            let hasNum = /[0-9]/.test(password);
+            if (!hasNum)
+                missing.push("number");
+
+            let hasSpecial = /[!@#$%^&*()]/.test(password);
+            if (!hasSpecial)
+                missing.push("special character");
+
+            message.innerHTML = "You are missing: " + missing;
+        });
+        document.addEventListener("submit", function(event) {
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+            let email = document.getElementById("email").value;
+        });
+
+        function escapeHTML(str) {
+            const htmlChars = {
+                "<": "&lt;",
+                ">": "&gt;",
+                "&": "&amp;",
+                '"': "&quot;",
+                "'": "&apos:"
+            }
+            return str.replace(/[<>&"']/g, c => htmlChars[c]);
+        }
+        function displayComment(event) {
+            event.preventDefault();
+            let userInput = document.getElementById("userInput").value;
+            let commentDiv = document.getElementById("comments");
+            if (userInput === "") return;
+            
+            let cleanInput = escapeHTML(userInput);
+            
+            let newComment = document.createElement("p");
+            newComment.textContent = cleanInput;
+            commentDiv.appendChild(newComment);
+
+            document.getElementById("userInput").value = "";
+
+        }
+    </script>
+</body>
+</html>
