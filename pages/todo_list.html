@@ -110,13 +110,25 @@
 						return cookie.substring(name.length + 1);
 					}
 				}
+                return "";
         }
 
         function toggleAppearance(){
             let body = document.getElementById("body");
-            let isDark = body.classList.toggle("dark");
+            let isDark = body.classList.contains("dark");
+            console.log(isDark);
 
-            setCookie("appearance", isDark ? "dark" : "light");
+            if (isDark) {
+                body.classList.remove("dark");
+                setCookie("appearance", "light");
+            }
+            else {
+                body.classList.add("dark");
+                setCookie("appearance", "dark");
+            }
+
+            console.log(getCookie("appearance"));
+
         }
 
         function loadAppearance(){
