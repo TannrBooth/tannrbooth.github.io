@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        .taskNode {
+            width: 200px;
+            height: 50px;
+            border: solid black 2px;
+            margin-top: 30px;
+            display: flex;
+        }
+        .itemName {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+            margin-right: 120px;
+        }
+        .removeButton {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+        .dark {
+            background-color: darkslategrey;
+            color: white;
+        }
+    </style>
+</head>
+<body id="body">
+    <h1>To-Do List</h1>
+    <p>Count: <span id="count"></span></p>
+    <button onclick="toggleAppearance()">Light/Dark Mode</button>
+    <br><br>
+    <form onsubmit="addTask(event)">
+        <label for="task"></label>
+        <input id="task" type="text">
+        <input type="submit" value="Add">
+    </form>
+    <div id="items"></div>
+
+    <script>
+        let itemCount = sessionStorage.getItem("itemCount") || 0;
+
+
+        function addTask(event){
+            event.preventDefault();
+            let input = document.getElementById("task");
+            let task = input.value.trim();
+            if (task === "") return;
+
+            let tasks = JSON.parse(sessionStorage.getItem("taskList")) || [];
+            tasks.push(task);
+
+            sessionStorage.setItem("taskList", JSON.stringify(tasks));
+
+            itemCount ++;
+            sessionStorage.setItem("itemCount", itemCount);
+
+            input.value = "";
+            renderTaskList();
+        }
+
+        function renderTaskList(){
+            const container = document.getElementById("items");
+            container.innerHTML = "";
+
+            const tasks = JSON.parse(sessionStorage.getItem("taskList")) || [];
+
+            for (let i = 0; i < tasks.length; i++){
+                let taskNode = `<div class="taskNode">
+                                    <div class="itemName">${tasks[i]}</div>
+                                    <button onclick="removeTask(${i})" class="removeButton">X</button>
+                                </div>`
+                container.innerHTML += taskNode;
+            }
+            const countSpan = document.getElementById("count");
+            countSpan.textContent = sessionStorage.getItem("itemCount");
+
+        }
+
+        function removeTask(index) {
+            let tasks = JSON.parse(sessionStorage.getItem("taskList")) || [];
+            tasks.splice(index, 1);
+            sessionStorage.setItem("taskList", JSON.stringify(tasks));
+            
+            itemCount--;
+            if (itemCount < 0) itemCount = 0;
+            sessionStorage.setItem("itemCount", itemCount);
+            renderTaskList();
+        }
+
+        function setCookie(name, value){
+            let date = new Date();
+            date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+            let expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path/";
+        }
+
+        function getCookies(name){
+            let cookies = document.cookie.split(";");
+				for (let i = 0; i < cookies.length; i++){
+					let cookie = cookies[i].trim();
+					
+					if (cookie.startsWith(name + "=")){
+						console.log(cookie.substring(name.length + 1));
+						return cookie.substring(name.length + 1);
+					}
+				}
+        }
+
+        function toggleAppearance(){
+            let body = document.getElementById("body");
+            let isDark = body.classList.toggle("dark");
+
+            setCookie("appearance", isDark ? "dark" : "light", 7);
+        }
+
+        function loadAppearance(){
+            let appearance = getCookie("appearance");
+            let body = document.getElementById("body");
+
+            if (appearance === "dark") {
+                body.classList.add("dark");
+            }
+        }
+
+        loadAppearance();
+        renderTaskList();
+    </script>
+</body>
+</html>
