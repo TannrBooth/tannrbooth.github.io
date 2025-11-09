@@ -97,10 +97,10 @@
             let date = new Date();
             date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
             let expires = "expires=" + date.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path/";
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
         }
 
-        function getCookies(name){
+        function getCookie(name){
             let cookies = document.cookie.split(";");
 				for (let i = 0; i < cookies.length; i++){
 					let cookie = cookies[i].trim();
@@ -116,7 +116,7 @@
             let body = document.getElementById("body");
             let isDark = body.classList.toggle("dark");
 
-            setCookie("appearance", isDark ? "dark" : "light", 7);
+            setCookie("appearance", isDark ? "dark" : "light");
         }
 
         function loadAppearance(){
