@@ -120,7 +120,9 @@
 
             if (isDark) {
                 body.classList.remove("dark");
-                setCookie("appearance", "light");
+                setCookie("appearance", "light");   // This is not working, but everything I 
+                                                    //looked up says it should be. I don't know if it's a browser thing
+                                                    //but I can't get this cookie to set things to light mode
             }
             else {
                 body.classList.add("dark");
